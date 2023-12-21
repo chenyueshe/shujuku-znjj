@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>问卷调查</title>
+		<!-- 引入vuejs -->
+		<script src="../lib/vue.js"></script>
+		<script src="../lib/vue-resource.min.js"></script>
+		<script src="../lib/echarts/echarts.min.js"></script>
+		<script src="../lib/echarts/dark.js"></script>
+		<!-- 引入vuejs结束 -->
+		<!-- 引入首页样式开始 -->
+		<link rel="stylesheet" type="text/css" href="../css/dashboard.css" />
+		<!-- 引入首页样式结束 -->
+		<!-- 引入字库开始 -->
+		<link rel="stylesheet" type="text/css" href="../lib/fonts/iconfont.css" />
+		<!-- 引入字库结束 -->
+		<!-- 引入elementui样式开始 -->
+		<link rel="stylesheet" href="../lib/element-ui/index.css">
+		<!-- 引入elementui样式结束 -->
+		<!-- 引入elementui脚本开始 -->
+		<script src="../lib/element-ui/index.js" type="text/javascript"></script>
+		<script src="../js/constant.js"></script>
+		<!-- 引入elementui脚本结束 -->
+	</head>
+	<body>
+		<!-- 外层盒子 -->
+		<div id="index">
+			<!-- 头部 -->
+
+			<!-- 头部结束 -->
+			<!-- 首页内容开始 -->
+			<div class="home">
+				<div class="home_left">
+					<div class="left_header">
+						整体数据
+						↓
+					</div>
+					<ul class="data_list1">
+						<li @click="linkPoint(1)">
+							<div><img src="../img/cl.png" alt="" width="30"></div>
+							<div>正在处理中</div>
+							<div>{{batch_chuli}}</div>
+						</li>
+						<li @click="linkPoint(2)">
+							<div><img src="../img/sh.png" alt="" width="30"></div>
+							<div>待审核</div>
+							<div>{{batch_shenhe}}</div>
+						</li>
+						<li @click="linkPoint(3)">
+							<div><img src="../img/lj.png" alt="" width="30"></div>
+							<div>短链接生成中</div>
+							<div>{{bactch_duanlianjie}}</div>
+						</li>
+					</ul>
+					<ul class="data_list2">
+						<li @click="linkPoint(4)">
+							<div><img src="../img/xx.png" alt="" width="30"></div>
+							<div>调研短信回复中</div>
+							<div>{{backTotal}}</div>
+						</li>
+						<li  @click="linkPoint(5)">
+							<div><img src="../img/rw.png" alt="" width="30"></div>
+							<div>调研任务下发数量</div>
+							<div>{{taskTotal}}</div>
+						</li>
+						<li @click="linkPoint(6)">
+							<div><img src="../img/rs.png" alt="" width="30"></div>
+							<div>调研任务人数下发数量</div>
+							<div>{{phoneTotal}}</div>
+						</li>
+					</ul>
+					<ul class="data_list3">
+						<li  @click="linkPoint(7)">
+							<div><img src="../img/hf.png" alt="" width="30"></div>
+							<div>调研任务回复人数数量</div>
+							<div>{{backEndTotal}}</div>
+						</li>
+						<li @click="linkPoint(8)">
+							<div><img src="../img/hmd.png" alt="" width="30"></div>
+							<div>黑名单数量</div>
+							<div>{{blackCount}}</div>
+						</li>
+					</ul>
+				</div>
+				<div class="home_right">
+					<div class="user_img">个人数据→</div>
+					<ul>
+						<li @click="linkPoint(1)">
+							<div style="width:100%;height:80px;border:2px solid #e3724a">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/cl.png" alt="" width="30"></div>
+								</div>
+								<div class="data_content">
+									<div class="data_title">
+										正在处理中
+									</div>
+									<div class="batch_num" style="color:#e3724a;">[&nbsp;{{batch_chuli1}}&nbsp;]</div>
+								</div>
+							</div>
+						</li>
+						<li @click="linkPoint(2)">
+							<div style="width:100%;height:80px;;border:2px solid #1b66e6">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/sh.png" alt="" width="30"></div>
+								</div>
+								<div class="data_content">
+									<div class="data_title">
+										<span>待审核</span>
+									</div>
+									<div class="batch_num" style="color:#1b66e6;">[&nbsp;{{batch_shenhe1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+						<li @click="linkPoint(3)">
+							<div style="width:100%;height:80px;;border:2px solid #9d55e7">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/lj.png" alt="" width="30"></div>
+								</div>
+								<div class="data_content">
+									<div class="data_title">短链接生成中</div>
+									<div class="batch_num" style="color:#9d55e7;">[&nbsp;{{bactch_duanlianjie1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+						<li @click="linkPoint(4)">
+							<div style="width:100%;height:80px;;border:2px solid #6cae32">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/xx.png" alt="" width="30"></div>
+
+								</div>
+								<div class="data_content">
+									<div class="data_title">调研短信回复中</div>
+									<div class="batch_num" style="color:#6cae32;">[&nbsp;{{backTotal1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+					</ul>
+					<ol>
+						<li @click="linkPoint(5)">
+							<div style="width:100%;height:80px;;border:2px solid #fd9300">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/hf.png" alt="" width="30"></div>
+
+								</div>
+								<div class="data_content">
+									<div class="data_title">调研任务下发数量</div>
+									<div class="batch_num" style="color:#fd9300;">[&nbsp;{{taskTotal1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+						<li @click="linkPoint(6)">
+							<div style="width:100%;height:80px;;border:2px solid #007879">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/rw.png" alt="" width="30"></div>
+
+								</div>
+								<div class="data_content">
+									<div class="data_title">调研任务人数下发数量</div>
+									<div class="batch_num" style="color:#007879;">[&nbsp;{{phoneTotal1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+						<li @click="linkPoint(7)">
+							<div style="width:100%;height:80px;;border:2px solid #db5c91">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/rs.png" alt="" width="30"></div>
+
+								</div>
+								<div class="data_content">
+									<div class="data_title">调研任务回复人数数量</div>
+									<div class="batch_num" style="color:#db5c91;">[&nbsp;{{backEndTotal1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>
+						<!--<li @click="linkPoint(8)">
+							<div style="width:100%;height:80px;;border:2px solid #1585f1">
+								<div class="data_left">
+									<div class="data_img"><img src="../img/hmd.png" alt="" width="30"></div>
+								</div>
+								<div class="data_content">
+									<div class="data_title">黑名单数量</div>
+									<div class="batch_num" style="color:#1585f1;">[&nbsp;{{blackCount1}}&nbsp;]</div>
+								</div>
+							</div>
+
+						</li>-->
+					</ol>
+				</div>
+			</div>
+			<!-- 首页内容结束 -->
+		</div>
+		<!-- 外层盒子 -->
+		<!-- 引入echarts脚本开始 
+		<script src="js/echarts/echarts.min.js" type="text/javascript"></script>
+		-->
+		<!-- 引入echarts脚本结束 -->
+		<!-- 引入首页脚本开始 -->
+		<script src="index.js" type="text/javascript"></script>
+		<!-- 引入首页脚本结束 -->
+	</body>
+</html>

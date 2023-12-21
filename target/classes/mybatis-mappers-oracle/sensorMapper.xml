@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.manager.dao.sensorDao" >
+	
+	<insert id="addsensor" parameterType="com.book.manager.model.sensor">
+		insert into sensor
+<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="id !=null and id !=''">
+			id,
+		</if>
+		<if test="name !=null and name !=''">
+			name,
+		</if>
+		<if test="type !=null and type !=''">
+			type,
+		</if>
+		<if test="roomId !=null and roomId !=''">
+			room_id,
+		</if>
+		<if test="roomName !=null and roomName !=''">
+			room_name,
+		</if>
+		<if test="lastNum !=null and lastNum !=''">
+			last_num,
+		</if>
+		<if test="unit !=null and unit !=''">
+			unit,
+		</if>
+</trim>			<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="id !=null and id !=''">
+			#{id},
+		</if>
+		<if test="name !=null and name !=''">
+			#{name},
+		</if>
+		<if test="type !=null and type !=''">
+			#{type},
+		</if>
+		<if test="roomId !=null and roomId !=''">
+			#{roomId},
+		</if>
+		<if test="roomName !=null and roomName !=''">
+			#{roomName},
+		</if>
+		<if test="lastNum !=null and lastNum !=''">
+			#{lastNum},
+		</if>
+		<if test="unit !=null and unit !=''">
+			#{unit},
+		</if>
+			</trim>
+	</insert>
+	<delete id="deletesensor" parameterType="java.util.Map">
+		delete from sensor where id=#{id}
+	<if test="roomId!=null and roomId !=''">
+		and room_id=#{roomId}
+	</if>
+	<if test="roomName!=null and roomName !=''">
+		and room_name=#{roomName}
+	</if>
+	<if test="lastNum!=null and lastNum !=''">
+		and last_num=#{lastNum}
+	</if>
+
+	</delete>
+	<update id="updatesensor" parameterType="com.book.manager.model.sensor">
+		update sensor set 
+			<if test="id !=null and id !=''">
+				id=#{id}
+			</if>
+			<if test="name !=null and name !=''">
+				,name=#{name}
+			</if>
+			<if test="type !=null and type !=''">
+				,type=#{type}
+			</if>
+			<if test="roomId !=null and roomId !=''">
+				,room_id=#{roomId}
+			</if>
+			<if test="roomName !=null and roomName !=''">
+				,room_name=#{roomName}
+			</if>
+			<if test="lastNum !=null and lastNum !=''">
+				,last_num=#{lastNum}
+			</if>
+			<if test="unit !=null and unit !=''">
+				,unit=#{unit}
+			</if>
+ 		where id=#{id}
+		<if test="roomId!=null and roomId !=''">
+			and room_id=#{roomId}
+		</if>
+		<if test="roomName!=null and roomName !=''">
+			and room_name=#{roomName}
+		</if>
+		<if test="lastNum!=null and lastNum !=''">
+			and last_num=#{lastNum}
+		</if>
+
+	</update>
+	<select id="querysensorDetail" parameterType="java.util.Map" resultType="com.book.manager.model.sensor">
+		select * from sensor where id=#{id}
+	</select>
+	<select id="querysensorList" parameterType="java.util.Map" resultType="com.book.manager.model.sensor">
+		select * from sensor where 1=1
+		<if test="roomId!=null and roomId !=''">
+			and room_id=#{roomId}
+		</if>
+		<if test="roomName!=null and roomName !=''">
+			and room_name like #{roomName}
+		</if>
+		<if test="lastNum!=null and lastNum !=''">
+			and last_num=#{lastNum}
+		</if>
+		limit #{offset},#{pageSize}
+
+	</select>
+	<select id="querysensorCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from sensor where 1=1
+		<if test="roomId!=null and roomId !=''">
+			and room_id=#{roomId}
+		</if>
+		<if test="roomName!=null and roomName !=''">
+			and room_name like #{roomName}
+		</if>
+		<if test="lastNum!=null and lastNum !=''">
+			and last_num=#{lastNum}
+		</if>
+
+	</select>
+</mapper>
+
