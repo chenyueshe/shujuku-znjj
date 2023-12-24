@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>H5模板</title>
+		<script src="lib/v2.6.10/vue.min.js"></script>
+		<!-- 页面自适应代码 -->
+		<script src="lib/adapt.js" type="text/javascript" charset="utf-8"></script>
+		<!-- vue移动端事件代码 -->
+		<script src="lib/touch.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 页面样式 -->
+		<link rel="stylesheet" type="text/css" href="css/templateH5.css" />
+		<!-- 字体 -->
+		<link rel="stylesheet" type="text/css" href="lib/font/iconfont.css" />
+		<!-- css3动画 -->
+		<link rel="stylesheet" type="text/css" href="lib/animate.min.css" />
+	</head>
+	<body>
+		<div id="templateH5" >
+			<div v-swiperight="sideMenuShow" v-swipeleft="closeSideMenu">
+				<div class="mask"></div>
+				<div class="header">
+					<div class="menuControl" @click="sideMenuShow">
+						<i class="iconfont icon-zhankaicaidan"></i>
+					</div>
+					移动端页面模板
+				</div>
+				<div :class="slideMenuClass">
+					<div class="slideHeader">
+						<div class="logo">
+							<i class="iconfont icon-wangzhan"></i>
+						</div>
+					</div>
+					<div class="slideContent">
+						<ul>
+							<li v-for="(item,index) in leftMenu">
+								<i :class="item.icon"></i>
+								<a class="menuOpen" href="javascript:void(0)" @click="menuOpen(index)">{{item.name}}</a>
+								<i class="xiala iconfont icon-xiala"></i>
+								<ol>
+									<li v-for="(i,idx) in item.children">
+										<a href="javascript:void(0)" @click="iframeSrcChange(index,idx)">{{i.name}}</a>
+									</li>
+								</ol>
+							</li>
+						</ul>
+						
+					</div>
+					<div class="closeSideMenu" v-tap="closeSideMenu">
+						<i class="iconfont icon-xiangzuo"></i>
+					</div>
+				</div>
+				<iframe id="contentArea" :src="iframeSrc" frameborder="0"></iframe>
+			</div>
+		</div>
+		<script src="js/templateH5.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

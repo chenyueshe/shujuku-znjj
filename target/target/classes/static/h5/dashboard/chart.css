@@ -1,0 +1,340 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+#charts {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.chartsBox {
+	position: absolute;
+	width: 100%;
+	height: 90%;
+	top: 10%;
+	overflow: hidden;
+}
+
+.chartsBox .chartsInner {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	overflow: hidden;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: #fff;
+}
+
+.chartsBox .chartControlBox {
+	width: 100%;
+	position: absolute;
+	z-index: 99;
+	bottom: 2rem;
+}
+
+.chartsBox .chartControl {
+	display: flex;
+	justify-content: space-around;
+}
+
+.chartsBox .chartControl li {
+	width: 2rem;
+	height: 2rem;
+	float: left;
+	box-sizing: border-box;
+	transition: all 0.5s;
+	text-align: center;
+	line-height: 2rem;
+	color: #999;
+	/* border: 0.1rem solid #999 */
+	background-color: #f5f5f5;
+}
+
+.chartsBox .chartControl li i {
+	font-size: 0.8rem;
+}
+
+.chartsBox .chartControl li:nth-child(1) {
+	/* border: 0.1rem solid #6a6eec; */
+	color: #6a6eec;
+	background-color: #fff;
+}
+
+.chartsBox .chartsInner:nth-child(1) {
+	z-index: 3
+}
+
+.chartsBox .chartsInner:nth-child(2) {
+	z-index: 2
+}
+
+.chartsBox .chartsInner:nth-child(3) {
+	z-index: 1
+}
+
+.chartsBox .chartsInner:nth-child(4) {
+	z-index: 0
+}
+
+.chartLeft {
+	width: 2rem;
+	height: 2.5rem;
+	background-color: rgba(106, 110, 236, 0.7);
+	position: absolute;
+	top: 35%;
+	left: 0;
+	z-index: 99;
+	border-radius: 0 10px 10px 0;
+}
+
+.chartRight {
+	width: 2rem;
+	height: 2.5rem;
+	background-color: rgba(106, 110, 236, 0.7);
+	position: absolute;
+	top: 35%;
+	right: 0;
+	z-index: 99;
+	border-radius: 10px 0 0 10px;
+}
+
+.clickStyle {
+	z-index: 9 !important;
+	top: 0 !important;
+}
+
+.dataOptionsBack {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 11
+}
+
+.loading_back {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 100;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.loading {
+	width: 20vw;
+	height: 15vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.loading span {
+	display: inline-block;
+	width: 0.2rem;
+	height: 100%;
+	border-radius: 4px;
+	background: none;
+	-webkit-animation: load 0.7s ease infinite;
+}
+
+@-webkit-keyframes load {
+
+	0%,
+	100% {
+		height: 40px;
+		background: #4374dd;
+	}
+
+	50% {
+		height: 70px;
+		margin: -15px 0;
+		background: #00c599;
+	}
+}
+
+.loading span:nth-child(2) {
+	-webkit-animation-delay: 0.2s;
+}
+
+.loading span:nth-child(3) {
+	-webkit-animation-delay: 0.4s;
+}
+
+.loading span:nth-child(4) {
+	-webkit-animation-delay: 0.6s;
+}
+
+.loading span:nth-child(5) {
+	-webkit-animation-delay: 0.8s;
+}
+
+.scene_title {
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #f3f3f3;
+}
+
+.scene_title:active {
+	background-color: #ccc;
+}
+
+.scene_title i {
+	font-size: 0.7rem
+}
+
+.scene_title span {
+	font-size: 0.5rem;
+	width: 5rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.scene_left {
+	color: #6a6eec;
+	font-weight: bold;
+}
+
+.sceneSelect {
+	position: absolute;
+	top: 10%;
+	width: 100%;
+	height: 90%;
+	z-index: 100;
+	background-color: #fff;
+}
+
+.sceneSelect ul {
+	width: 100%;
+	height: 60%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+.sceneSelect ul li {
+	width: 2.5rem;
+	height: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: 0.5rem;
+	text-align: center;
+	line-height: 1rem;
+	font-size: 0.4rem;
+	margin-bottom: 0.5rem;
+	color: #fff;
+	border-radius: 5px;
+	background: #f3f3f3;
+	color: #999;
+	padding: 0.1rem;
+	transition: all 0.5s;
+}
+
+.sceneSelectControl {
+	width: 100%;
+	height: 20%;
+}
+
+.sceneSelectControl ol {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+.sceneSelectControl ol li {
+	width: 4rem;
+	height: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: 0.5rem;
+	text-align: center;
+	line-height: 1rem;
+	font-size: 0.4rem;
+	margin-bottom: 0.5rem;
+	color: #fff;
+	border-radius: 5px;
+	background-color: #6a6eec;
+	color: #fff;
+	padding: 0.1rem;
+}
+
+.sceneSelectControl ol li:nth-child(1) {
+	background-color: #6a6eec;
+}
+
+.sceneSelectControl ol li:nth-child(2) {
+	background-color: #ccc;
+}
+
+.selectNameColor {
+	background-color: #6a6eec !important;
+	color: #fff !important
+}
+
+#chartsDisplay {
+	width: 100%;
+	height: 20%;
+	color: #6a6eec;
+	font-size: 0.4rem;
+	padding: 0.5rem;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+
+#chartsDisplayTitle {
+	float: left;
+	display: block;
+	width: 25%;
+	height: 0.8rem;
+	background-color: #6a6eec;
+	text-align: center;
+	line-height: 0.8rem;
+	font-size: 0.4rem;
+	color:#fff
+}
+
+#chartsDisplayText {
+	width: 70%;
+	height: 0.8rem;
+	display: flex;
+	align-items: center;
+	float: right;
+	margin-left: 5%;
+	font-size: 0.4rem;
+	font-weight: bold;
+}

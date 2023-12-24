@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1598339448673'); /* IE9 */
+  src: url('iconfont.eot?t=1598339448673#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARsAAsAAAAACQgAAAQgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqFbIRWATYCJAMMCwgABCAFhG0HOhugBxGVnNHIfkhScgco4ADAAQpwMAu+zDOi0VAAgAH99F72JpNlVmwP3u3ZTEoGFfx1ssPD06W9vzOp1RIqFTtV8IgE/FgP6IDOYLemmrUAzZ0A8oI5HvMs6inZWz693IG6GdkIFcAWlvV/Dpc2lhbQ/JblNMfUqBdgHFBgYw+QNL0TORC/QXcREyI/bwYIgBLmDmLs+KlzQQ4ZQC8EAG3dtGEVyEsayD1EBHV5tWUiCREKEqgTfsRZGEAI/330BryQAwIqGMDAmTRuLYz8I56fxbRIW0p1wKxnAgBvGsAAugIkQMtbLQsHWEa6StBMJGR/uhQyBBRr+UURzkll1ZP+4xUASQFIVCbW6SPAc8wACDw/qwHCROPuUgB64CNAVgNrSqKg2tZsgkqDDiBUSPIzZGsCkIUpcb2RwEcr2UoTywLLUUMotrArmxiVZubMa/hoiyAgPt2UetaZedUelee4cWPuUDbTxEej6BsjaE4wAhxEFQ5CK0kto+qQXdH+OG63uYLVevWhyZ81c1bHjSfm1A6Trl4tEm4seGyHFZrSxhbSuLp+2oqG1rL45oMsa9LwvEXGCJQ2gIO5G/9oJoZSB0TRkcE1PM8IVjXH0ewRoJBWqkFK6CnWUtAE/JW7CS1ea5o/Z96CWcoAiaSr+YR7uylXnMly9xhh7UEZsuA0dOQXub2wq7OkV8/RdymvZr07tqxo7P3mmJttdA/nl4gxmon7x3eQrGeYnWtkLR2THyHTyLpHx6U4Q7ZO6VWs342lO1S9/2x3s43SOXD4aO3QJTp+3RDKyNbKWjimXELGkXkPg4yjJwlFlz7d0OPpBLFgz8xn0sJBjs403TT7peHzVBItWFNdJGEw3zKHCiv65Psvu+dHPIgUHX6uSA7CHyEimHqfmJ34nhqk+k9lU/9VWRGB6o+2j2rKpPIIbBTtYmMJ9Dzoc/2iD8Mu/c49Ab571+fdaHzcuFhRJw5IWJ8Yq9ux9exJDhAaoIxJb+neJp7Ad/8iENx+tq9Bb+i3RYsE+C9v3xju8gQJ43Xqd9Aa/BHckRU55QNtyjEHc/J48jdo3W+WyfLtSgCOod/5ssnoXELdREOhZgZJ3QKZsQeoaDlCVd0dmvb86S0jYiyyAth5MSD0fUGh6xeSvm9kxv5AxdQ/VPVjDE2fMC7YsopiNUYwUkwhvoUi4ZaQXlci/4BZX0dS5HPyBcUUfnAtpxr3sUVZY4i5yjxVAhJuYG9sh3XN0AmXmKiVq3Y726a2N1kJN4OVN4EiCqVA7BYoJFiLaG21qv38Acr0ahHpKZswXyBhFI0Dl8UZgfQl7aiyZ2luXMl4lCK7GxGsAfamCdUwwkDX3q6EEsqSzwh1dmyrGo2VWPvLmutbB01g9RQEwoiE6jdikxfzA9iWfdQOBg==') format('woff2'),
+  url('iconfont.woff?t=1598339448673') format('woff'),
+  url('iconfont.ttf?t=1598339448673') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1598339448673#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-kaoshi:before {
+  content: "\e602";
+}
+
+.icon-wenjuan:before {
+  content: "\e6cc";
+}
+
