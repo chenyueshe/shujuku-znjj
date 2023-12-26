@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>物联网管理</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" href="lib/element-ui/index.css">
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-resource.min.js"></script>
+  <script src="lib/element-ui/index.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="js/constant.js"></script>
+  <script src="lib/iframe.js"></script>
+  <style>
+  	.layui-layout-admin .layui-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto !important;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #009688;
+    font-size: 16px;
+}
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin"  id="index">
+  <div class="layui-header" style="background-image: linear-gradient(to right, #1585f1,#00d1b1);box-shadow:0px 0px 10px #000">
+    <div class="layui-logo" style="color:#f3f8fd" @click="jump">
+   		<img alt="" src="img/yidong.png">   
+  		 	智能家居管理
+    </div>
+<el-button @click="showorHide" style="position:absolute;left:200px;top:15px;padding:7px 7px" size="mini" :class="caret" ></el-button>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;"  style="color:#f3f8fd" v-cloak>
+          <img src="img/cabin.png" class="layui-nav-img">
+          {{name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <transition name="el-zoom-in-top">
+  <div class="layui-side" style="width:235px" v-show="show2" class="transition-box">
+	    <div class="layui-side-scroll" style="width:250px;background-image: linear-gradient(to bottom, #1585f1,#00d1b1);">
+	    	<el-menu
+		      class="el-menu-vertical-demo"
+		      @open="handleOpen"
+		      @close="handleClose"
+		      text-color="#f3f8fd"
+		      active-text-color="#ffd04b"
+		      :default-active="activeIndex"
+		      >
+		      <!-- 
+		      <el-submenu index="${menuKEY}">
+		      	<template slot="title">
+		          <i style="color:#f3f8fd" class="el-icon-s-platform"></i>
+		          <span>${menuName}</span>
+		        </template>
+		        <el-menu-item-group>
+		          <el-menu-item index="${menuKEY}" @click="addAction('${menuURL}','${menuName}')">
+		          	<i  class="el-icon-s-platform"></i>
+		          	${menuName}
+		          </el-menu-item>
+		        </el-menu-item-group>
+		      </el-submenu>
+		      -->
+		      <el-submenu index="家具管理">
+<template slot="title">
+<i style="color:#f3f8fd" class="el-icon-s-platform"></i>
+<span>家具管理</span>
+</template>
+<el-menu-item-group>
+<el-menu-item index="controll" @click="addAction('module/controll.html','家具管理')">
+<i  class="el-icon-s-platform"></i>
+家具管理
+</el-menu-item>
+</el-menu-item-group>
+</el-submenu><el-submenu index="传感器管理">
+<template slot="title">
+<i style="color:#f3f8fd" class="el-icon-s-platform"></i>
+<span>传感器管理</span>
+</template>
+<el-menu-item-group>
+<el-menu-item index="sensor" @click="addAction('module/sensor.html','传感器管理')">
+<i  class="el-icon-s-platform"></i>
+传感器管理
+</el-menu-item>
+</el-menu-item-group>
+</el-submenu><el-submenu index="房间管理">
+<template slot="title">
+<i style="color:#f3f8fd" class="el-icon-s-platform"></i>
+<span>房间管理</span>
+</template>
+<el-menu-item-group>
+<el-menu-item index="room" @click="addAction('module/room.html','房间管理')">
+<i  class="el-icon-s-platform"></i>
+房间管理
+</el-menu-item>
+</el-menu-item-group>
+</el-submenu>
+		   </el-menu>
+	    </div>
+  </div>
+  </transition>
+  <div class="layui-body" :style="layuiStyle">
+  	<el-tabs v-model="editableTabsValue" type="card"  closable @tab-click="handleTabclick" @edit="handleTabsEdit">
+	  <el-tab-pane
+	    :key="item.url"
+	    v-for="(item, index) in editableTabs"
+	    :label="item.title"
+	    :name="item.name"
+	  >
+	  </el-tab-pane>
+	</el-tabs>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px; height:100%;">
+		<iframe :src="dashboardUrl" style="width:100%;height:100%" frameborder="0" name="right_frame"></iframe>
+	</div>
+  </div>
+  <!--  
+  <div class="layui-footer">
+   
+    © 版权所有  自己
+  </div>
+  -->
+</div>
+</div>
+
+<script src="layui/layui.js"></script>
+<script src="js/index.js"></script>
+<style>
+.el-menu-item i{
+color:#ffffff;
+}
+.el-menu{
+background:none
+}
+.el-submenu__title:hover{
+background:none
+}
+.is-active{
+background:none
+}
+.el-menu-item{
+background:none
+}
+.el-menu-item:hover{
+background:none
+}
+.el-menu-item:focus{
+background:none
+}
+</style>
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../lib/v2.6.10/vue.min.js"></script>
+		<!-- 页面自适应代码 -->
+		<script src="../lib/adapt.js" type="text/javascript" charset="utf-8"></script>
+		<!-- vue移动端事件代码 -->
+		<script src="../lib/touch.js" type="text/javascript" charset="utf-8"></script>
+		<!-- 页面样式 -->
+		<link rel="stylesheet" type="text/css" href="./chart.css" />
+		<!-- 字体 -->
+		<link rel="stylesheet" type="text/css" href="../lib/font/iconfont.css" />
+		<!-- css3动画 -->
+		<link rel="stylesheet" type="text/css" href="../lib/animate.min.css" />
+	</head>
+	<body>
+		<div id="charts">
+			<!-- 加载动画 -->
+			<div v-show="dataOptionsBackControl" class="dataOptionsBack"></div>
+			<div class="loading_back" v-if="loadingControl">
+				<div class="loading">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<!-- 加载动画结束 -->
+			<div class="scene_title" @click="sceneDropDown">
+				<i class="iconfont icon-24gl-chartBarUpward scene_left"></i>
+				<span>{{sceneTitle}}</span>
+				<i class="iconfont icon-xiala scene_right"></i>
+			</div>
+			<div class="sceneSelect" v-show="sceneSelect">
+				<ul>
+					<li v-for="(item,index) in chartData" @click="selectName($event,item.src,item.name)">{{item.name}}
+					</li>
+				</ul>
+				<div id="chartsDisplay">
+					<div id="chartsDisplayTitle">场景名称</div>
+					<div id="chartsDisplayText"></div>
+				</div>
+				<div class="sceneSelectControl">
+					<ol>
+						<li @click="insertName">确认</li>
+						<li @click="sceneSelect = false;">取消</li>
+					</ol>
+				</div>
+			</div>
+			<div class="chartsBox">
+				<iframe :src="jumpUrl" width="100%" height="100%" frameborder="0"></iframe>
+			</div>
+		</div>
+		<script src="./chart.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
