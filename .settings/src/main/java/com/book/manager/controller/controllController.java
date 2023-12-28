@@ -30,6 +30,7 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,9 +69,9 @@ public class controllController {
 		return responseMessage;
 	}
 	@RequestMapping("addcontroll")
-	public ResponseMessage addcontroll(@RequestBody ControllVo param,HttpServletRequest request) {
+	public ResponseMessage addcontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return controllService.addcontroll(param);
+		return controllService.addcontroll(param,bindingResult);
 	}
 	
 	@RequestMapping("deletecontroll")
@@ -81,9 +82,9 @@ public class controllController {
 	}
 	
 	@RequestMapping("updatecontroll")
-	public ResponseMessage updatecontroll(@RequestBody ControllVo param,HttpServletRequest request) {
+	public ResponseMessage updatecontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return controllService.updatecontroll(param);
+		return controllService.updatecontroll(param,bindingResult);
 	}
 	
 	@RequestMapping("querycontrollList")
