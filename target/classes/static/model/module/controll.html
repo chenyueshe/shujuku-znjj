@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>控制器管理</title>
+  <title>家具管理</title>
   <link rel="stylesheet" href="../layui/css/layui.css">
   <link rel="stylesheet" href="../lib/element-ui/index.css">
   <script src="../lib/vue.js"></script>
@@ -63,12 +63,12 @@
 		    </el-table-column>
 		    -->
 		    <el-table-column
-				label="控制器编码"
+				label="家具编码"
  			prop="id"
  			width="300">
 			</el-table-column>
 			<el-table-column
-				label="控制器名称"
+				label="家具名称"
  			prop="name"
  			width="300">
 			</el-table-column>
@@ -80,6 +80,11 @@
 			<el-table-column
 				label="房间名称"
  			prop="roomName"
+ 			width="300">
+			</el-table-column>			
+			<el-table-column
+				label="状态"
+ 			prop="status"
  			width="300">
 			</el-table-column>
 			<el-table-column
@@ -116,17 +121,27 @@
   		   <!-- 新增对话框 -->
   		  <el-dialog title="新增"  :visible.sync="saveFormVisible">
 			  <el-form :label-position="labelPosition">
-			    <el-form-item label="控制器编码">
-				<el-input v-model="saveParam.id" placeholder="控制器编码"></el-input>
+			    <el-form-item label="家具编码">
+				<el-input v-model="saveParam.id" placeholder="家具编码"></el-input>
 			</el-form-item>
-			<el-form-item label="控制器名称">
-				<el-input v-model="saveParam.name" placeholder="控制器名称"></el-input>
+			<el-form-item label="家具名称">
+				<el-input v-model="saveParam.name" placeholder="家具名称"></el-input>
 			</el-form-item>
 			<el-form-item label="房间编码">
 				<el-input v-model="saveParam.roomId" placeholder="房间编码"></el-input>
 			</el-form-item>
 			<el-form-item label="房间名称">
 				<el-input v-model="saveParam.roomName" placeholder="房间名称"></el-input>
+			</el-form-item>
+			</el-form-item>
+			<el-form-item label="状态">
+				 <el-switch
+			    v-model="saveParam.status"
+			    active-color="#13ce66"
+			    inactive-color="#ff4949"
+			    active-value="开"
+			    inactive-value="关">
+			  </el-switch>
 			</el-form-item>
 			<el-form-item label="功能列表">
 				<ul>
@@ -150,17 +165,27 @@
 		 <!-- 更新对话框 -->
   		  <el-dialog title="更新"  :visible.sync="updateFormVisible">
 			  <el-form :label-position="labelPosition">
-			    <el-form-item label="控制器编码">
-				<el-input v-model="updateParam.id" placeholder="控制器编码"></el-input>
+			    <el-form-item label="家具编码">
+				<el-input v-model="updateParam.id" placeholder="家具编码"></el-input>
 			</el-form-item>
-			<el-form-item label="控制器名称">
-				<el-input v-model="updateParam.name" placeholder="控制器名称"></el-input>
+			<el-form-item label="家具名称">
+				<el-input v-model="updateParam.name" placeholder="家具名称"></el-input>
 			</el-form-item>
 			<el-form-item label="房间编码">
 				<el-input v-model="updateParam.roomId" placeholder="房间编码"></el-input>
 			</el-form-item>
 			<el-form-item label="房间名称">
 				<el-input v-model="updateParam.roomName" placeholder="房间名称"></el-input>
+			</el-form-item>
+			</el-form-item>
+			<el-form-item label="状态">
+				 <el-switch
+			    v-model="updateParam.status"
+			    active-color="#13ce66"
+			    inactive-color="#ff4949"
+			    active-value="开"
+			    inactive-value="关">
+			  </el-switch>
 			</el-form-item>
 			<el-form-item>
 				<div style="height:20px;">功能列表</div>

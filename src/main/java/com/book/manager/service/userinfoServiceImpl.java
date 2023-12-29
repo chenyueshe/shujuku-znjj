@@ -11,6 +11,9 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import java.util.regex.Pattern;
 import java.math.BigDecimal;
 import org.springframework.util.StringUtils;
@@ -22,12 +25,18 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.extern.slf4j.Slf4j;
+import vo.UserinfoVo;
+
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.service.userinfoService;
 import com.book.manager.dao.userinfoDao;
 import com.book.manager.model.userinfo;
 import com.book.manager.util.CommonUtil;
 import com.book.manager.util.DateUtil;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.BindingResult;
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户管理 service
@@ -46,29 +55,37 @@ public class userinfoServiceImpl implements userinfoService{
 	private String localpath;
 	
 	@Override
-	public ResponseMessage adduserinfo(Map<String, Object> param) {
+	public ResponseMessage adduserinfo(@Validated UserinfoVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
+
 		try {
 			
-			
-			userinfo userinfo=new userinfo();
-			userinfo.setId(Integer.parseInt((String)param.get("id")));
-			userinfo.setUsername((String)param.get("username"));
-			userinfo.setPassword((String)param.get("password"));
-			userinfo.setSex((String)param.get("sex"));
-			userinfo.setName((String)param.get("name"));
-			userinfo.setRole((String)param.get("role"));
-			userinfo.setPhone((String)param.get("phone"));
-			userinfo.setRemark((String)param.get("remark"));
-			userinfoDao.adduserinfo(userinfo);
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
 
+			userinfo userinfo=new userinfo();
+			userinfo.setId(param.getId());
+			userinfo.setUsername(param.getUsername());
+			userinfo.setPassword(param.getPassword());
+			userinfo.setSex(param.getSex());
+			userinfo.setName(param.getName());
+			userinfo.setRole(param.getRole());
+			userinfo.setPhone(param.getPhone());
+			userinfo.setRemark(param.getRemark());
+            
+			userinfoDao.adduserinfo(userinfo);
 			//强制类型转换
 			//碰到日期格式，转换成日期
 			//以create开头的字段，使用当前的日期
 			responseMessage.setStatus("S");
 			responseMessage.setMessage("保存成功");
 			return responseMessage;
-		}catch (Exception e) {
+		}
+		catch (Exception e) {
 			log.info("用户管理保存异常",e);
 			responseMessage.setStatus("F");
 			responseMessage.setMessage("用户管理保存异常");
@@ -94,7 +111,7 @@ public class userinfoServiceImpl implements userinfoService{
 	}
 
 	@Override
-	public ResponseMessage updateuserinfo(Map<String, Object> param) {
+	public ResponseMessage updateuserinfo(UserinfoVo param) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
@@ -103,14 +120,14 @@ public class userinfoServiceImpl implements userinfoService{
 			//碰到日期格式，转换成日期
 			//以update开头的字段，使用当前的日期
 			userinfo userinfo=new userinfo();
-			userinfo.setId(Integer.parseInt((String)param.get("id")));
-			userinfo.setUsername((String)param.get("username"));
-			userinfo.setPassword((String)param.get("password"));
-			userinfo.setSex((String)param.get("sex"));
-			userinfo.setName((String)param.get("name"));
-			userinfo.setRole((String)param.get("role"));
-			userinfo.setPhone((String)param.get("phone"));
-			userinfo.setRemark((String)param.get("remark"));
+			userinfo.setId(param.getId());
+			userinfo.setUsername(param.getUsername());
+			userinfo.setPassword(param.getPassword());
+			userinfo.setSex(param.getSex());
+			userinfo.setName(param.getName());
+			userinfo.setRole(param.getRole());
+			userinfo.setPhone(param.getPhone());
+			userinfo.setRemark(param.getRemark());
 			userinfoDao.updateuserinfo(userinfo);
 			responseMessage.setStatus("S");
 			responseMessage.setMessage("更新成功");

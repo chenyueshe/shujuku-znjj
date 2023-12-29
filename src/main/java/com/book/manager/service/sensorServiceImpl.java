@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 import java.util.regex.Pattern;
 import java.math.BigDecimal;
 import org.springframework.util.StringUtils;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
@@ -22,6 +23,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.extern.slf4j.Slf4j;
+import vo.SensorVo;
+
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.service.sensorService;
 import com.book.manager.dao.sensorDao;
@@ -46,19 +49,25 @@ public class sensorServiceImpl implements sensorService{
 	private String localpath;
 	
 	@Override
-	public ResponseMessage addsensor(Map<String, Object> param) {
+	public ResponseMessage addsensor(@Validated SensorVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
+
 			sensor sensor=new sensor();
-			sensor.setId(Integer.parseInt((String)param.get("id")));
-			sensor.setName((String)param.get("name"));
-			sensor.setType((String)param.get("type"));
-			sensor.setRoomId((String)param.get("roomId"));
-			sensor.setRoomName((String)param.get("roomName"));
-			sensor.setLastNum((String)param.get("lastNum"));
-			sensor.setUnit((String)param.get("unit"));
+			sensor.setId(param.getId());
+			sensor.setName(param.getName());
+			sensor.setType(param.getType());
+			sensor.setRoomId(param.getRoomId());
+			sensor.setRoomName(param.getRoomName());
+			sensor.setLastNum(param.getLastNum());
+			sensor.setUnit(param.getUnit());
 			sensorDao.addsensor(sensor);
 
 			//强制类型转换
@@ -93,22 +102,28 @@ public class sensorServiceImpl implements sensorService{
 	}
 
 	@Override
-	public ResponseMessage updatesensor(Map<String, Object> param) {
+	public ResponseMessage updatesensor(@Validated SensorVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
+
 			//强制类型转换
 			//碰到日期格式，转换成日期
 			//以update开头的字段，使用当前的日期
 			sensor sensor=new sensor();
-			sensor.setId(Integer.parseInt((String)param.get("id")));
-			sensor.setName((String)param.get("name"));
-			sensor.setType((String)param.get("type"));
-			sensor.setRoomId((String)param.get("roomId"));
-			sensor.setRoomName((String)param.get("roomName"));
-			sensor.setLastNum((String)param.get("lastNum"));
-			sensor.setUnit((String)param.get("unit"));
+			sensor.setId(param.getId());
+			sensor.setName(param.getName());
+			sensor.setType(param.getType());
+			sensor.setRoomId(param.getRoomId());
+			sensor.setRoomName(param.getRoomName());
+			sensor.setLastNum(param.getLastNum());
+			sensor.setUnit(param.getUnit());
 			sensorDao.updatesensor(sensor);
 			responseMessage.setStatus("S");
 			responseMessage.setMessage("更新成功");

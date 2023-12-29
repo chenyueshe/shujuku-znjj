@@ -30,12 +30,15 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 import lombok.extern.slf4j.Slf4j;
+import vo.SensorVo;
 
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.dao.sensorDao;
@@ -58,9 +61,9 @@ public class sensorController {
 	private sensorService sensorService;
 	
 	@RequestMapping("addsensor")
-	public ResponseMessage addsensor(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage addsensor(@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return sensorService.addsensor(param);
+		return sensorService.addsensor(param, bindingResult);
 	}
 	
 	@RequestMapping("deletesensor")
@@ -71,9 +74,9 @@ public class sensorController {
 	}
 	
 	@RequestMapping("updatesensor")
-	public ResponseMessage updatesensor(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage updatesensor(@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return sensorService.updatesensor(param);
+		return sensorService.updatesensor(param, bindingResult);
 	}
 	
 	@RequestMapping("querysensorList")

@@ -30,12 +30,15 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 import lombok.extern.slf4j.Slf4j;
+import vo.RoomVo;
 
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.dao.roomDao;
@@ -58,9 +61,9 @@ public class roomController {
 	private roomService roomService;
 	
 	@RequestMapping("addroom")
-	public ResponseMessage addroom(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage addroom(@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return roomService.addroom(param);
+		return roomService.addroom(param,bindingResult);
 	}
 	
 	@RequestMapping("deleteroom")
@@ -71,9 +74,9 @@ public class roomController {
 	}
 	
 	@RequestMapping("updateroom")
-	public ResponseMessage updateroom(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage updateroom(@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return roomService.updateroom(param);
+		return roomService.updateroom(param,bindingResult);
 	}
 	
 	@RequestMapping("queryroomList")

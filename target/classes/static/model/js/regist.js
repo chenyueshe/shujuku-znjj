@@ -23,7 +23,7 @@
           		//发送 post 请求
 				var FormData=saveParam;
 				var url=urlAdd+'/adduserinfo';
-				vue.$http.post(url,FormData,{emulateJSON:true}).then(function(res){
+				vue.$http.post(url,FormData).then(function(res){
 					if("S"==res.body.status){
 						vue.$message({
 				             message: res.body.message,

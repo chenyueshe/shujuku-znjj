@@ -30,6 +30,7 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 import lombok.extern.slf4j.Slf4j;
+import vo.ControllVo;
 
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.dao.controllDao;
@@ -67,9 +69,9 @@ public class controllController {
 		return responseMessage;
 	}
 	@RequestMapping("addcontroll")
-	public ResponseMessage addcontroll(@RequestBody Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage addcontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return controllService.addcontroll(param);
+		return controllService.addcontroll(param,bindingResult);
 	}
 	
 	@RequestMapping("deletecontroll")
@@ -80,9 +82,9 @@ public class controllController {
 	}
 	
 	@RequestMapping("updatecontroll")
-	public ResponseMessage updatecontroll(@RequestBody Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage updatecontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return controllService.updatecontroll(param);
+		return controllService.updatecontroll(param,bindingResult);
 	}
 	
 	@RequestMapping("querycontrollList")

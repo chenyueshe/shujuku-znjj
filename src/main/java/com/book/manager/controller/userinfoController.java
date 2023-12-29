@@ -30,12 +30,15 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.text.SimpleDateFormat;
 import lombok.extern.slf4j.Slf4j;
+import vo.UserinfoVo;
 
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.dao.userinfoDao;
@@ -71,9 +74,9 @@ public class userinfoController {
 		return responseMessage;
 	}
 	@RequestMapping("adduserinfo")
-	public ResponseMessage adduserinfo(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage adduserinfo(@RequestBody UserinfoVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
-		return userinfoService.adduserinfo(param);
+		return userinfoService.adduserinfo(param,bindingResult);
 	}
 	
 	@RequestMapping("deleteuserinfo")
@@ -84,7 +87,7 @@ public class userinfoController {
 	}
 	
 	@RequestMapping("updateuserinfo")
-	public ResponseMessage updateuserinfo(@RequestParam Map<String, Object>param,HttpServletRequest request) {
+	public ResponseMessage updateuserinfo(@RequestBody UserinfoVo param,HttpServletRequest request) {
 		
 		return userinfoService.updateuserinfo(param);
 	}

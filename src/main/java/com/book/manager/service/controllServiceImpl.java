@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 import java.util.regex.Pattern;
 import java.math.BigDecimal;
 import org.springframework.util.StringUtils;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
@@ -22,6 +23,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.extern.slf4j.Slf4j;
+import vo.ControllVo;
+
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.service.controllService;
 import com.book.manager.dao.controllDao;
@@ -46,22 +49,27 @@ public class controllServiceImpl implements controllService{
 	private String localpath;
 	
 	@Override
-	public ResponseMessage addcontroll(Map<String, Object> param) {
+	public ResponseMessage addcontroll(@Validated ControllVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
 			String productId=new Date().getTime()+"";
 			controll controll=new controll();
-			controll.setId(Integer.parseInt((String)param.get("id")));
-			controll.setName((String)param.get("name"));
-			controll.setRoomId((String)param.get("roomId"));
-			controll.setRoomName((String)param.get("roomName"));
+			controll.setId(param.getId());
+			controll.setName(param.getName());
+			controll.setRoomId(param.getRoomId());
+			controll.setRoomName(param.getRoomName());
 			controll.setStatus(productId);
-			controll.setOprator((String)param.get("oprator"));
+			controll.setOprator(param.getOprator());
 			controll.setOpratorTime(new Date());
 			controllDao.addcontroll(controll);
 
-			List<Map<String, Object>> list=(List<Map<String, Object>>)param.get("controls");
+			List<Map<String, Object>> list= param.getControls();
 			for(Map<String, Object>temp:list) {
 				temp.put("id", productId);
 				controllDao.saveWork(temp);
@@ -98,32 +106,35 @@ public class controllServiceImpl implements controllService{
 	}
 
 	@Override
-	public ResponseMessage updatecontroll(Map<String, Object> param) {
+	public ResponseMessage updatecontroll(@Validated ControllVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
 			//强制类型转换
 			//碰到日期格式，转换成日期
 			//以update开头的字段，使用当前的日期
 			controll controll=new controll();
-			controll.setId((Integer)param.get("id"));
-			controll.setName((String)param.get("name"));
-			controll.setRoomId((String)param.get("roomId"));
-			controll.setRoomName((String)param.get("roomName"));
-			controll.setStatus((String)param.get("status"));
-			controll.setOprator((String)param.get("oprator"));
-			SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
-			Date date2=sdf2.parse((String)param.get("opratorTime"));
-			controll.setOpratorTime(date2);
+			controll.setId(param.getId());
+			controll.setName(param.getName());
+			controll.setRoomId(param.getRoomId());
+			controll.setRoomName(param.getRoomName());
+			controll.setStatus(param.getStatus());
+			controll.setOprator(param.getOprator());
+			controll.setOpratorTime(param.getOpratorTime());
 			controllDao.updatecontroll(controll);
 			
-			String status=(String)param.get("status");
+			String status= param.getStatus();
 			Map<String, Object>deleteMap=new HashMap<>();
 			deleteMap.put("id", status);
 			controllDao.deleteWork(deleteMap);
 			
-			List<Map<String, Object>> list=(List<Map<String, Object>>)param.get("controls");
+			List<Map<String, Object>> list= param.getControls();
 			for(Map<String, Object>temp:list) {
 				temp.put("id", status);
 				controllDao.saveWork(temp);

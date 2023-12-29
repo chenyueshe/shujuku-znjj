@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 import java.util.regex.Pattern;
 import java.math.BigDecimal;
 import org.springframework.util.StringUtils;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.extern.slf4j.Slf4j;
+import vo.RoomVo;
+
 import com.book.manager.model.ResponseMessage;
 import com.book.manager.service.roomService;
 import com.book.manager.dao.roomDao;
@@ -46,17 +50,22 @@ public class roomServiceImpl implements roomService{
 	private String localpath;
 	
 	@Override
-	public ResponseMessage addroom(Map<String, Object> param) {
+	public ResponseMessage addroom(@Validated RoomVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
 			room room=new room();
-			room.setId(Integer.parseInt((String)param.get("id")));
-			room.setFloor((String)param.get("floor"));
-			room.setName((String)param.get("name"));
-			room.setType((String)param.get("type"));
-			room.setMaster((String)param.get("master"));
+			room.setId(param.getId());
+			room.setFloor(param.getFloor());
+			room.setName(param.getName());
+			room.setType(param.getType());
+			room.setMaster(param.getMaster());
 			roomDao.addroom(room);
 
 			//强制类型转换
@@ -91,20 +100,25 @@ public class roomServiceImpl implements roomService{
 	}
 
 	@Override
-	public ResponseMessage updateroom(Map<String, Object> param) {
+	public ResponseMessage updateroom(@Validated RoomVo param, BindingResult bindingResult) {
 		ResponseMessage responseMessage=new ResponseMessage();
 		try {
 			
-			
+		    // 检查参数校验结果
+		    if (bindingResult.hasErrors()) {
+		        responseMessage.setStatus("F");
+		        responseMessage.setMessage("格式错误");
+		        return responseMessage;
+		    }
 			//强制类型转换
 			//碰到日期格式，转换成日期
 			//以update开头的字段，使用当前的日期
 			room room=new room();
-			room.setId(Integer.parseInt((String)param.get("id")));
-			room.setFloor((String)param.get("floor"));
-			room.setName((String)param.get("name"));
-			room.setType((String)param.get("type"));
-			room.setMaster((String)param.get("master"));
+			room.setId(param.getId());
+			room.setFloor(param.getFloor());
+			room.setName(param.getName());
+			room.setType(param.getType());
+			room.setMaster(param.getMaster());
 			roomDao.updateroom(room);
 			responseMessage.setStatus("S");
 			responseMessage.setMessage("更新成功");

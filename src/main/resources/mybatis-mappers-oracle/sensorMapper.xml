@@ -87,15 +87,6 @@
 				,unit=#{unit}
 			</if>
  		where id=#{id}
-		<if test="roomId!=null and roomId !=''">
-			and room_id=#{roomId}
-		</if>
-		<if test="roomName!=null and roomName !=''">
-			and room_name=#{roomName}
-		</if>
-		<if test="lastNum!=null and lastNum !=''">
-			and last_num=#{lastNum}
-		</if>
 
 	</update>
 	<select id="querysensorDetail" parameterType="java.util.Map" resultType="com.book.manager.model.sensor">
