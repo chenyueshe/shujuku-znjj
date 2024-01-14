@@ -11,8 +11,7 @@ import javax.validation.constraints.NotNull;
 public class SensorVo {
 
 	// 传感器编码
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "编码只能包含数字、大小写字母")
+    @NotNull(message="编码不能为空")
 	private int id;
 
 	// 传感器名称
@@ -22,8 +21,8 @@ public class SensorVo {
 	private String type;
 
 	// 房间编码
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "编码只能包含数字、大小写字母")
+    @NotNull(message="房间编码不能为空")
+    @Pattern(regexp = "^[0-9]*$", message = "编码只能包含数字")
 	private String roomId;
 
 	// 房间名称

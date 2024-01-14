@@ -12,7 +12,6 @@ public class controll {
 
 	// 控制器编码
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
 	private int id;
 
 	// 控制器名称
@@ -20,7 +19,7 @@ public class controll {
 
 	// 房间编码
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
+    @Pattern(regexp = "^[0-9]*$", message = "编码只能包含数字")
 	private String roomId;
 
 	// 房间名称

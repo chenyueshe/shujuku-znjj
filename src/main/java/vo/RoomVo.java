@@ -13,12 +13,11 @@ import javax.validation.constraints.Pattern;
 public class RoomVo {
 
 	// 房间编号
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
+    @NotNull(message="编码不能为空")
 	private int id;
 
 	// 房间楼层
-    @NotNull
+    @NotNull(message="楼层不能为空")
     @Pattern(regexp = "^[0-9]*$", message = "楼层只能包含数字")
 	private String floor;
 

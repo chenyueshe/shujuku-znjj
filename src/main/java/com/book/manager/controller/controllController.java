@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,7 +70,7 @@ public class controllController {
 		return responseMessage;
 	}
 	@RequestMapping("addcontroll")
-	public ResponseMessage addcontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage addcontroll(@Validated@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return controllService.addcontroll(param,bindingResult);
 	}
@@ -82,7 +83,7 @@ public class controllController {
 	}
 	
 	@RequestMapping("updatecontroll")
-	public ResponseMessage updatecontroll(@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage updatecontroll(@Validated@RequestBody ControllVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return controllService.updatecontroll(param,bindingResult);
 	}

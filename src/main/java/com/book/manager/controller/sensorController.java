@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,7 +62,7 @@ public class sensorController {
 	private sensorService sensorService;
 	
 	@RequestMapping("addsensor")
-	public ResponseMessage addsensor(@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage addsensor(@Validated@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return sensorService.addsensor(param, bindingResult);
 	}
@@ -74,7 +75,7 @@ public class sensorController {
 	}
 	
 	@RequestMapping("updatesensor")
-	public ResponseMessage updatesensor(@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage updatesensor(@Validated@RequestBody SensorVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return sensorService.updatesensor(param, bindingResult);
 	}

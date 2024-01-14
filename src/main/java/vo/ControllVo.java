@@ -9,21 +9,20 @@ import java.util.Map;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.NotNull;
-//控制器管理
+//家具管理
 @Data
 public class ControllVo {
 
-	// 控制器编码
-    @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
+	// 家具编码
+    @NotNull(message="编码不能为空")
 	private int id;
 
-	// 控制器名称
+	// 家具名称
 	private String name;
 
 	// 房间编码
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
+    @Pattern(regexp = "^[0-9]*$", message = "编码只能包含数字")
 	private String roomId;
 
 	// 房间名称

@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,7 +62,7 @@ public class roomController {
 	private roomService roomService;
 	
 	@RequestMapping("addroom")
-	public ResponseMessage addroom(@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage addroom(@Validated@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return roomService.addroom(param,bindingResult);
 	}
@@ -74,7 +75,7 @@ public class roomController {
 	}
 	
 	@RequestMapping("updateroom")
-	public ResponseMessage updateroom(@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage updateroom(@Validated@RequestBody RoomVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return roomService.updateroom(param,bindingResult);
 	}

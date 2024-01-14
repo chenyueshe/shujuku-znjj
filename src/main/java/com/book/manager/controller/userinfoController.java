@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,7 +75,7 @@ public class userinfoController {
 		return responseMessage;
 	}
 	@RequestMapping("adduserinfo")
-	public ResponseMessage adduserinfo(@RequestBody UserinfoVo param,HttpServletRequest request, BindingResult bindingResult) {
+	public ResponseMessage adduserinfo(@Validated@RequestBody UserinfoVo param,HttpServletRequest request, BindingResult bindingResult) {
 		
 		return userinfoService.adduserinfo(param,bindingResult);
 	}
@@ -87,7 +88,7 @@ public class userinfoController {
 	}
 	
 	@RequestMapping("updateuserinfo")
-	public ResponseMessage updateuserinfo(@RequestBody UserinfoVo param,HttpServletRequest request) {
+	public ResponseMessage updateuserinfo(@Validated@RequestBody UserinfoVo param,HttpServletRequest request) {
 		
 		return userinfoService.updateuserinfo(param);
 	}

@@ -14,7 +14,6 @@ public class room {
 
 	// 房间编号
     @NotNull
-    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "密码只能包含数字、大小写字母")
 	private int id;
 
 	// 房间楼层

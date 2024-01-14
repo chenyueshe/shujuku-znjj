@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 public class userinfo {
 
 	// 用户编号
+	@NotNull
 	private int id;
 
 	// 登录用户名
